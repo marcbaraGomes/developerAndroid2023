@@ -1,11 +1,12 @@
 package com.marcbaragom.applistacurso.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.marcbaragom.applistacurso.R;
 import com.marcbaragom.applistacurso.model.Pessoa;
@@ -41,7 +42,42 @@ public class MainActivity extends AppCompatActivity {
         editNomeCurso.setText(pessoa.getNomeCurso());
         editContato.setText(pessoa.getFoneContato());
 
+        buttonLimpar = findViewById(R.id.buttonLimpar);
+        buttonSalvar = findViewById(R.id.buttonSalvar);
+        buttonFinaliza = findViewById(R.id.buttonFinaliza);
 
+
+        buttonLimpar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editPrimNome.setText("");
+                editSobrenome.setText("");
+                editNomeCurso.setText("");
+                editContato.setText("");
+            }
+        });
+
+        buttonSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pessoa.setPrimeiroNome(editPrimNome.getText().toString());
+                pessoa.setSobreNome(editSobrenome.getText().toString());
+                pessoa.setNomeCurso(editNomeCurso.getText().toString());
+                pessoa.setFoneContato(editContato.getText().toString());
+
+                Toast.makeText(MainActivity.this, pessoa.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonFinaliza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Volte Sempre!", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
 
     }
+
+
 }
