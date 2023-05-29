@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.marcbaragom.applistacurso.R;
+import com.marcbaragom.applistacurso.controller.PessoaController;
 import com.marcbaragom.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,11 +21,14 @@ public class MainActivity extends AppCompatActivity {
     Button buttonLimpar;
     Button buttonSalvar;
     Button buttonFinaliza;
+    PessoaController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        controller = new PessoaController();
 
         pessoa = new Pessoa();
         pessoa.setPrimeiroNome("Lucas Nathan");
@@ -66,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setFoneContato(editContato.getText().toString());
 
                 Toast.makeText(MainActivity.this, pessoa.toString(), Toast.LENGTH_SHORT).show();
+
+                controller.Salvar(pessoa);
+
             }
         });
 
