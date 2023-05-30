@@ -1,6 +1,7 @@
 package com.marcbaragom.applistacurso.view;
 
 import android.content.SharedPreferences;
+import android.hardware.lights.LightState;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,11 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.marcbaragom.applistacurso.R;
 import com.marcbaragom.applistacurso.controller.PessoaController;
+import com.marcbaragom.applistacurso.database.ListaCursoDB;
 import com.marcbaragom.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static final String NOME_PREFERENCES = "pref_listvar";
 
     private Pessoa pessoa;
     EditText editPrimNome;
@@ -27,17 +27,16 @@ public class MainActivity extends AppCompatActivity {
     Button buttonFinaliza;
     PessoaController controller;
 
-    SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        SharedPreferences.Editor listaVip = preferences.edit();
+        ListaCursoDB db = new ListaCursoDB(MainActivity.this);
 
-        controller = new PessoaController();
+        controller = new PessoaController(MainActivity.this);
 
         pessoa = new Pessoa();
         pessoa.setPrimeiroNome("Lucas Nathan");
@@ -79,13 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setFoneContato(editContato.getText().toString());
 
                 Toast.makeText(MainActivity.this, pessoa.toString(), Toast.LENGTH_SHORT).show();
-
-                listaVip.putString("primeiroNome", pessoa.getPrimeiroNome());
-                listaVip.putString("sobreNome", pessoa.getSobreNome());
-                listaVip.putString("nomeCurso", pessoa.getNomeCurso());
-                listaVip.putString("foneContato", pessoa.getFoneContato());
-
-                listaVip.apply();
 
                 controller.Salvar(pessoa);
 
