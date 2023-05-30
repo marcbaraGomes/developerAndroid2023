@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import com.marcbaragom.applistacurso.database.ListaCursoDB;
 import com.marcbaragom.applistacurso.model.Pessoa;
 
+import java.util.List;
+
 public class PessoaController extends ListaCursoDB {
 
     public static final String NOME_PREFERENCES = "pref_listvar";
@@ -53,4 +55,9 @@ public class PessoaController extends ListaCursoDB {
         //Salvar no Log
         Log.i("Controller_MVC", "Salvo: "+pessoa.toString());
     }
+
+    public List<Pessoa> getListaAlunos(){
+        return listarAlunos();
+    }
+
 }

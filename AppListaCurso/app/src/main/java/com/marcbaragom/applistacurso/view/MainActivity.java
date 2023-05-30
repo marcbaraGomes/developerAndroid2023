@@ -15,6 +15,8 @@ import com.marcbaragom.applistacurso.controller.PessoaController;
 import com.marcbaragom.applistacurso.database.ListaCursoDB;
 import com.marcbaragom.applistacurso.model.Pessoa;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private Pessoa pessoa;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonFinaliza;
     PessoaController controller;
 
-
+    List<Pessoa> dados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         ListaCursoDB db = new ListaCursoDB(MainActivity.this);
 
         controller = new PessoaController(MainActivity.this);
+
+        dados = controller.getListaAlunos();
 
         pessoa = new Pessoa();
         pessoa.setPrimeiroNome("Lucas Nathan");

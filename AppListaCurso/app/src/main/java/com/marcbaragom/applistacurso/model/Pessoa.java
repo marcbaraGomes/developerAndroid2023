@@ -1,6 +1,7 @@
 package com.marcbaragom.applistacurso.model;
 
 public class Pessoa {
+    private int id;
     private String primeiroNome;
     private String sobreNome;
     private String nomeCurso;
@@ -48,5 +49,13 @@ public class Pessoa {
                 ", nomeCurso='" + nomeCurso + '\'' +
                 ", foneContato='" + foneContato + '\'' +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
