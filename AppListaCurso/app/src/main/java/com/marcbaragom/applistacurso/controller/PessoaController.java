@@ -60,4 +60,21 @@ public class PessoaController extends ListaCursoDB {
         return listarAlunos();
     }
 
+    public void alterar(Pessoa pessoa){
+
+        ContentValues dados= new ContentValues();
+        dados.put("id", pessoa.getId());
+        dados.put("PRIMEIRO_NOME", pessoa.getPrimeiroNome());
+        dados.put("SOBRENOME", pessoa.getSobreNome());
+        dados.put("NOME_CURSO", pessoa.getNomeCurso());
+        dados.put("FONE_CONTATO", pessoa.getFoneContato());
+
+        alterarObjeto("TBALUNO", dados);
+
+    }
+
+    public void deletar(int id){
+        removeObjeto("TBALUNO", id);
+    }
+
 }

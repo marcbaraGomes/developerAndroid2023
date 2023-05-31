@@ -42,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
 
         dados = controller.getListaAlunos();
 
+        /*Pessoa alteracao = dados.get(1);
+
+        alteracao.setPrimeiroNome("ANGELA LUZIA");
+        alteracao.setSobreNome("GOMES");
+        alteracao.setNomeCurso("GEOLOGIA");
+        alteracao.setFoneContato("+55 (85) 987934793");
+
+        controller.alterar(alteracao);
+*/
         pessoa = new Pessoa();
         pessoa.setPrimeiroNome("Lucas Nathan");
         pessoa.setSobreNome("Gomes");

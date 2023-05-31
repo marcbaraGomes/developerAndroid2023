@@ -49,9 +49,9 @@ public class ListaCursoDB extends SQLiteOpenHelper {
         db.insert(tabela, null, dados);
     }
 
-    public void removeObjeto(String tabela, String whereClause ,String[] dadosArgs){
+    public void removeObjeto(String tabela, int id){
 
-        db.delete(tabela, whereClause, dadosArgs);
+        db.delete(tabela, "WHERE id=?", new String[]{Integer.toString(id)});
 
     }
 
@@ -82,5 +82,11 @@ public class ListaCursoDB extends SQLiteOpenHelper {
         }
 
         return lista;
+    }
+
+    public void alterarObjeto(String tabela,
+                              ContentValues dados){
+        int id = dados.getAsInteger("id");
+        db.update(tabela, dados, "id=?", new String[]{Integer.toString(id)} );
     }
 }
